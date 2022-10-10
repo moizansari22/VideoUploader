@@ -1,0 +1,8 @@
+<%= form_with model: @video, local: true do |form| %>
+  <p>title</p><%= form.text_field :title %> <br>
+  <p>introduction</p><%= form.text_area :introduction %> <br>
+  <p></p><%= form.file_field :video %> <br><br>
+  <%= form.select :category, ['Excersise', 'Education' , "Recipe"]%><br><br>
+  <%= form.submit %>
+<% end %>
+<%= link_to 'back', videos_path %> 
