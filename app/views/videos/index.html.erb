@@ -1,12 +1,12 @@
-<%= link_to 'new Video', new_video_path %> 
+<h1 align="center">Videos</h1>
+<div align="center"><%= link_to "New Video", new_video_path %> </div>
+<div align="center"><%= link_to "Sign Out", destroy_user_session_path, method: :delete %> </div>
 
-<%= @videos.each do |k| %>
-    <% if k.video.attached? %>
-    <p><%= k.title %></p> <br>
-    <p><%= k.introduction %></p>
-    <video src="<%= rails_blob_path(k.video) %>" type="video/mp4" controls></video>
-    <%= image_tag url_for(k.clip.preview(resize_to_limit: [300, 300]).processed) %> 
-
-    <%= button_to 'destroy', video_path(k), method: :delete %>
-    <% end %>
-<% end %>
+<div id="videos">
+  <% @videos.each do |video| %>
+    <%= render video %>
+    <p>
+      <div align="center"><%= button_to 'destroy', video_path(video), method: :delete %></div>
+    </p>
+  <% end %>
+</div>

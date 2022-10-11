@@ -1,14 +1,18 @@
-<div id="<%= dom_id video %>">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div align="center" id="<%= dom_id video %>">
   <p>
     <strong>Title:</strong>
     <%= video.title %>
   </p>
-
-  <p>
-    <strong>Introduction:</strong>
-    <%= video.introduction %>
-  </p>
-
+  <%= video_tag(url_for(video.video) , size: "650x400",:controls => true) %> 
+  <div id="demo" title=<%=video.title %> ><%= image_tag url_for(video.video.preview(resize_to_limit: [256 , 256]).processed)%></div>
   
-
 </div>
+
+<script>
+$(document).ready(function(){
+  $("#demo").mouseover(function(){
+    $("#demo").attr("title");
+  });
+});
+</script>
