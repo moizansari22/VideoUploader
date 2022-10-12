@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 puts "Seeding..."
-Category.create(name: 'Excersize')
-Category.create(name: 'Education')
-Category.create(name: 'Recipe')
+arr = ['Excersize',"Education","Recipe"]
+arr.each do |category|
+    Category.create(name: category)
+end
 puts "Seeding done."

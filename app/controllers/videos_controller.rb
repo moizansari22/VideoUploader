@@ -1,9 +1,5 @@
 class VideosController < ApplicationController
   before_action :set_video, only: %i[ show edit update destroy ]
-  before_action :authenticate_user! 
-  skip_before_action :verify_authenticity_token
-  def home
-  end
   # GET /videos or /videos.json
   def index
     @videos = Video.all
@@ -64,7 +60,10 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = Video.find(params[:id])
+      @video = Video.find_by(:id)
+      if @video.blank?
+        flash[:alert] = "Video not found"
+      end
     end
 
     # Only allow a list of trusted parameters through.
