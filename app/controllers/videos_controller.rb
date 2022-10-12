@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[ show edit update destroy ]
   # GET /videos or /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.all.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /videos/1 or /videos/1.json
@@ -12,7 +12,7 @@ class VideosController < ApplicationController
   # GET /videos/new
   def new
     @video = Video.new
-    @categories = Category.pluck(:name)
+    @categories = Category.all
   end
 
   # GET /videos/1/edit
@@ -60,14 +60,14 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = Video.find_by(:id)
-      if @video.blank?
-        flash[:alert] = "Video not found"
+      @video = Video.find_by(id: params[:id])
+      if @video.nil?
+        flash[:alert] = "video not avalible"
+        redirect_to "/videos#index"
       end
     end
-
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title, :introduction , :video , :category)
+      params.require(:video).permit(:title , :video , :category_id)
     end
 end

@@ -21,7 +21,7 @@
   </div>
   <br>
   <div>
-    <%= form.select :category, @categories %>
+    <%= form.select :category_id, @categories.collect {|my_video| [my_video.name , my_video.id]} %>
   </div>
   <br>
   <div>
