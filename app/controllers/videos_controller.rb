@@ -38,7 +38,7 @@ class VideosController < ApplicationController
   def update
     respond_to do |format|
       if @video.update(video_params)
-        format.html { redirect_to video_url(@video), notice: "Video was successfully updated." }
+        format.html { redirect_to video_url(@videos), notice: "Video was successfully updated." }
         format.json { render :show, status: :ok, location: @video }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class VideosController < ApplicationController
 
   # DELETE /videos/1 or /videos/1.json
   def destroy
-    @video.destroy
+    @videos.destroy
 
     respond_to do |format|
       format.html { redirect_to videos_url, notice: "Video was successfully destroyed." }
@@ -63,11 +63,11 @@ class VideosController < ApplicationController
       @video = Video.find_by(id: params[:id])
       if @video.nil?
         flash[:alert] = "video not avalible"
-        redirect_to "/videos#index"
+        redirect_to :root
       end
     end
     # Only allow a list of trusted parameters through.
     def video_params
-      params.require(:video).permit(:title , :video , :category_id)
+      params.require(:video).permit(:title, :video, :category_id)
     end
 end
