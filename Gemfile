@@ -73,4 +73,8 @@ end
 gem 'devise'
 gem 'ffmpeg'
 gem "image_processing"
-gem 'mini_magick'
+gem 'jquery-rails'
+gem 'file_validators'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views', '~> 1.0'
+gem 'will_paginate'

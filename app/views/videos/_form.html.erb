@@ -10,17 +10,20 @@
       </ul>
     </div>
   <% end %>
-
+  
   <div>
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
-
+  <br>
   <div>
-    <%= form.label :introduction, style: "display: block" %>
-    <%= form.text_area :introduction %>
+    <%= form.file_field :video %>
   </div>
-
+  <br>
+  <div>
+    <%= form.select :category_id, @categories.collect {|my_video| [my_video.name , my_video.id]} %>
+  </div>
+  <br>
   <div>
     <%= form.submit %>
   </div>
