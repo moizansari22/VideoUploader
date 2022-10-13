@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :set_video, only: %i[ show edit update destroy ]
   # GET /videos or /videos.json
   def index
-    @videos = Video.all.paginate(:page => params[:page], :per_page => 10)
+    @videos = Video.all.paginate(page: params[:page], per_page: 4)
   end
 
   # GET /videos/1 or /videos/1.json
@@ -63,7 +63,7 @@ class VideosController < ApplicationController
       @video = Video.find_by(id: params[:id])
       if @video.nil?
         flash[:alert] = "video not avalible"
-        redirect_to :root
+        redirect_to root_path
       end
     end
     # Only allow a list of trusted parameters through.
