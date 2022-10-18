@@ -1,6 +1,5 @@
 class VideosController < ApplicationController
   before_action :set_video, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
   # GET /videos or /videos.json
   def index
     @videos = Video.all.paginate(:page => params[:page], :per_page => 10)
